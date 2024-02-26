@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pulse_tracker/core/utils/date_time_utils.dart';
 
 class CustomDateTimePicker extends StatefulWidget {
-  const CustomDateTimePicker({super.key});
+  const CustomDateTimePicker({
+    this.onDateSelected,
+    this.onTimeSelected,
+    super.key,
+  });
+
+  final Function(DateTime date)? onDateSelected;
+  final Function(TimeOfDay date)? onTimeSelected;
 
   @override
   State<CustomDateTimePicker> createState() => _CustomDateTimePickerState();
@@ -27,6 +34,7 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
             ).then((value) {
               setState(() {
                 currentDate = value ?? currentDate;
+                widget.onDateSelected?.call(currentDate);
               });
             });
           },
@@ -61,6 +69,7 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
             ).then((value) {
               setState(() {
                 currentTime = value ?? currentTime;
+                widget.onTimeSelected?.call(currentTime);
               });
             });
           },

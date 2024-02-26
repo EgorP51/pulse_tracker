@@ -31,10 +31,12 @@ extension NumberPickerTypeExtension on NumberPickerType {
 class CustomNumberPicker extends StatefulWidget {
   const CustomNumberPicker({
     required this.type,
+    this.onValueSelected,
     super.key,
   });
 
   final NumberPickerType type;
+  final Function(int value, NumberPickerType type)? onValueSelected;
 
   @override
   State<CustomNumberPicker> createState() => _CustomNumberPickerState();
@@ -90,7 +92,12 @@ class _CustomNumberPickerState extends State<CustomNumberPicker> {
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
-            onChanged: (value) => setState(() => _value = value),
+            onChanged: (value) {
+              setState(() {
+                _value = value;
+                widget.onValueSelected?.call(value, widget.type);
+              });
+            },
             decoration: BoxDecoration(
               border: Border.symmetric(
                 horizontal: BorderSide(

@@ -6,3 +6,12 @@ abstract class PulseTrackerEvent extends Equatable {
 }
 
 class InitialEvent extends PulseTrackerEvent {}
+
+class SaveRecordEvent extends PulseTrackerEvent {
+  final RecordModel record;
+
+  SaveRecordEvent({required this.record});
+
+  @override
+  List<Object?> get props => [record];
+}
