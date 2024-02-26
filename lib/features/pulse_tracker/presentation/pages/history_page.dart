@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/history_widget.dart';
+import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/history/history_widget.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
