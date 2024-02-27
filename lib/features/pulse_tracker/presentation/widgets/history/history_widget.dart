@@ -17,7 +17,7 @@ class HistoryWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text('History'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
