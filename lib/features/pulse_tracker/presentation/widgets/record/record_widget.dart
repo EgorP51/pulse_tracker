@@ -1,3 +1,5 @@
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:circular_countdown_timer/countdown_text_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pulse_tracker/core/di/locator.dart';
@@ -5,6 +7,7 @@ import 'package:pulse_tracker/core/ui/ui_constants.dart';
 import 'package:pulse_tracker/features/pulse_tracker/data/models/record_model.dart';
 import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/record/custom_date_time_picker.dart';
 import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/record/custom_number_picker.dart';
+import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/record/timer_widget.dart';
 
 import '../../../manager/pulse_tracker_bloc.dart';
 
@@ -56,7 +59,22 @@ class _RecordWidgetState extends State<RecordWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('New Record')),
+      appBar: AppBar(
+        title: const Text('New Record'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.timer),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const TimerWidget();
+                },
+              );
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 36),
         child: Center(
@@ -65,7 +83,6 @@ class _RecordWidgetState extends State<RecordWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              // DATA INPUT
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -86,7 +103,6 @@ class _RecordWidgetState extends State<RecordWidget> {
                 ],
               ),
               const SizedBox(height: 16),
-              // TEXT
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Text(
@@ -94,7 +110,6 @@ class _RecordWidgetState extends State<RecordWidget> {
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
               ),
-              // DATE INPUT
               CustomDateTimePicker(
                 onDateSelected: onDateSelected,
                 onTimeSelected: onTimeSelected,
