@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pulse_tracker/core/di/locator.dart';
 import 'package:pulse_tracker/core/ui/ui_constants.dart';
 import 'package:pulse_tracker/features/pulse_tracker/data/models/record_model.dart';
-import 'package:pulse_tracker/features/pulse_tracker/manager/pulse_tracker_bloc.dart';
 import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/record/custom_date_time_picker.dart';
 import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/record/custom_number_picker.dart';
+
+import '../../../manager/pulse_tracker_bloc.dart';
 
 class RecordWidget extends StatefulWidget {
   const RecordWidget({super.key});
@@ -54,72 +55,68 @@ class _RecordWidgetState extends State<RecordWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PulseTrackerBloc, PulseTrackerState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(title: const Text('New Record')),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 36),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      appBar: AppBar(title: const Text('New Record')),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 36),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              // DATA INPUT
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(height: 20),
-                  // DATA INPUT
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomNumberPicker(
-                        type: NumberPickerType.systolic,
-                        onValueSelected: onValueSelected,
-                      ),
-                      // const SizedBox(width: 10),
-                      CustomNumberPicker(
-                        type: NumberPickerType.diastolic,
-                        onValueSelected: onValueSelected,
-                      ),
-                      // const SizedBox(width: 10),
-                      CustomNumberPicker(
-                        type: NumberPickerType.pulse,
-                        onValueSelected: onValueSelected,
-                      ),
-                    ],
+                  CustomNumberPicker(
+                    type: NumberPickerType.systolic,
+                    onValueSelected: onValueSelected,
                   ),
-                  const SizedBox(height: 16),
-                  // TEXT
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text(
-                      'Date & Time',
-                      style: Theme.of(context).textTheme.displayLarge,
-                    ),
+                  // const SizedBox(width: 10),
+                  CustomNumberPicker(
+                    type: NumberPickerType.diastolic,
+                    onValueSelected: onValueSelected,
                   ),
-                  // DATE INPUT
-                  CustomDateTimePicker(
-                    onDateSelected: onDateSelected,
-                    onTimeSelected: onTimeSelected,
+                  // const SizedBox(width: 10),
+                  CustomNumberPicker(
+                    type: NumberPickerType.pulse,
+                    onValueSelected: onValueSelected,
                   ),
                 ],
               ),
-            ),
+              const SizedBox(height: 16),
+              // TEXT
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(
+                  'Date & Time',
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+              ),
+              // DATE INPUT
+              CustomDateTimePicker(
+                onDateSelected: onDateSelected,
+                onTimeSelected: onTimeSelected,
+              ),
+            ],
           ),
-          bottomNavigationBar: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CupertinoButton(
-              borderRadius: BorderRadius.circular(UIConstants.radius),
-              color: Theme.of(context).colorScheme.primary,
-              child: const Text('save'),
-              onPressed: () {
-                BlocProvider.of<PulseTrackerBloc>(context).add(
-                  SaveRecordEvent(record: record),
-                );
-              },
-            ),
-          ),
-        );
-      },
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CupertinoButton(
+          borderRadius: BorderRadius.circular(UIConstants.radius),
+          color: Theme.of(context).colorScheme.primary,
+          child: const Text('save'),
+          onPressed: () {
+            locator
+                .get<PulseTrackerBloc>()
+                .add(SaveRecordEvent(record: record));
+            Navigator.pop(context);
+          },
+        ),
+      ),
     );
   }
 }

@@ -1,14 +1,24 @@
 import 'dart:convert';
 
-RecordModel recordModelFromJson(String str) =>
-    RecordModel.fromJson(json.decode(str));
+import 'package:hive/hive.dart';
+
+part 'record_model.g.dart';
+
+RecordModel recordModelFromJson(String str) {
+  return RecordModel.fromJson(json.decode(str));
+}
 
 String recordModelToJson(RecordModel data) => json.encode(data.toJson());
 
+@HiveType(typeId: 0)
 class RecordModel {
+  @HiveField(0)
   final int? systolic;
+  @HiveField(1)
   final int? diastolic;
+  @HiveField(2)
   final int? pulse;
+  @HiveField(3)
   final DateTime? dateTime;
 
   RecordModel({
