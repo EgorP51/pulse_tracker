@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pulse_tracker/core/ui/theme.dart';
-import 'features/pulse_tracker/presentation/pages/record_page.dart';
+import 'package:pulse_tracker/features/pulse_tracker/presentation/pages/main_page.dart';
 
 // start: 30h
 
@@ -15,7 +15,7 @@ class PulseTrackerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: PulseTrackerTheme.theme,
-      home: const RecordPage(),
+      home: const MainPage(),
     );
   }
 }

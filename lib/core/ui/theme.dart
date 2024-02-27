@@ -10,7 +10,7 @@ class PulseTrackerTheme {
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
-        titleLarge: TextStyle(fontSize: 26.0, fontStyle: FontStyle.italic),
+        titleLarge: TextStyle(fontSize: 20.0),
         bodyMedium: TextStyle(fontSize: 14.0),
       ),
       colorScheme: const ColorScheme.light().copyWith(
