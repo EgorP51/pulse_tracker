@@ -19,8 +19,25 @@ class PulseTrackerBloc extends Bloc<PulseTrackerEvent, PulseTrackerState> {
       emit(state.copyWith(records: records));
     });
     on<SaveRecordEvent>((event, emit) {
-      recordBox.add(event.record);
+      var record = event.record;
+
+      if (record.dateTime == null) {
+        record = record.copyWith(dateTime: DateTime.now());
+      }
+      if (record.systolic == null) {
+        record = record.copyWith(systolic: 120);
+      }
+      if (record.diastolic == null) {
+        record = record.copyWith(diastolic: 80);
+      }
+      if (record.pulse == null) {
+        record = record.copyWith(pulse: 60);
+      }
+
+      recordBox.add(record);
+
       List<RecordModel> newRecords = recordBox.values.toList();
+
       emit(state.copyWith(records: newRecords));
     });
   }

@@ -26,6 +26,17 @@ extension NumberPickerTypeExtension on NumberPickerType {
         return '(BMP)';
     }
   }
+
+  int get defaultValues {
+    switch (this) {
+      case NumberPickerType.systolic:
+        return 120;
+      case NumberPickerType.diastolic:
+        return 80;
+      case NumberPickerType.pulse:
+        return 60;
+    }
+  }
 }
 
 class CustomNumberPicker extends StatefulWidget {
@@ -43,7 +54,13 @@ class CustomNumberPicker extends StatefulWidget {
 }
 
 class _CustomNumberPickerState extends State<CustomNumberPicker> {
-  int _value = 80;
+  late int _value;
+
+  @override
+  void initState() {
+    _value = widget.type.defaultValues;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +94,7 @@ class _CustomNumberPickerState extends State<CustomNumberPicker> {
           NumberPicker(
             value: _value,
             minValue: 0,
-            maxValue: 150,
+            maxValue: 250,
             step: 1,
             itemHeight: 60,
             itemWidth: 80,
