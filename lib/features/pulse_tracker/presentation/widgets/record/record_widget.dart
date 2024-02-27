@@ -59,47 +59,50 @@ class _RecordWidgetState extends State<RecordWidget> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: const Text('New Record')),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
-                // DATA INPUT
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    CustomNumberPicker(
-                      type: NumberPickerType.systolic,
-                      onValueSelected: onValueSelected,
-                    ),
-                    const SizedBox(width: 10),
-                    CustomNumberPicker(
-                      type: NumberPickerType.diastolic,
-                      onValueSelected: onValueSelected,
-                    ),
-                    const SizedBox(width: 10),
-                    CustomNumberPicker(
-                      type: NumberPickerType.pulse,
-                      onValueSelected: onValueSelected,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                // TEXT
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Date & Time',
-                    style: Theme.of(context).textTheme.displayLarge,
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 36),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 20),
+                  // DATA INPUT
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomNumberPicker(
+                        type: NumberPickerType.systolic,
+                        onValueSelected: onValueSelected,
+                      ),
+                      // const SizedBox(width: 10),
+                      CustomNumberPicker(
+                        type: NumberPickerType.diastolic,
+                        onValueSelected: onValueSelected,
+                      ),
+                      // const SizedBox(width: 10),
+                      CustomNumberPicker(
+                        type: NumberPickerType.pulse,
+                        onValueSelected: onValueSelected,
+                      ),
+                    ],
                   ),
-                ),
-                // DATE INPUT
-                CustomDateTimePicker(
-                  onDateSelected: onDateSelected,
-                  onTimeSelected: onTimeSelected,
-                ),
-              ],
+                  const SizedBox(height: 16),
+                  // TEXT
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(
+                      'Date & Time',
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                  ),
+                  // DATE INPUT
+                  CustomDateTimePicker(
+                    onDateSelected: onDateSelected,
+                    onTimeSelected: onTimeSelected,
+                  ),
+                ],
+              ),
             ),
           ),
           bottomNavigationBar: Padding(
