@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pulse_tracker/core/ui/ui_constants.dart';
 import 'package:pulse_tracker/core/utils/date_time_utils.dart';
 
 class CustomDateTimePicker extends StatefulWidget {
@@ -27,7 +28,7 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
         //mainAxisSize: MainAxisSize.min,
         children: [
           InkWell(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(UIConstants.radius),
             onTap: () {
               showDatePicker(
                 context: context,
@@ -42,10 +43,14 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
               });
             },
             child: Container(
-              padding: const EdgeInsets.all(10.0),
+              width: MediaQuery.of(context).size.width / 2 - 24 ,
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 16,
+              ),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(UIConstants.radius),
               ),
               child: Row(
                 children: [
@@ -64,7 +69,7 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
           const SizedBox(width: 10),
           Expanded(
             child: InkWell(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(UIConstants.radius),
               onTap: () {
                 showTimePicker(
                   context: context,
@@ -77,10 +82,13 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
                 });
               },
               child: Container(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(UIConstants.radius),
                 ),
                 child: Row(
                   children: [

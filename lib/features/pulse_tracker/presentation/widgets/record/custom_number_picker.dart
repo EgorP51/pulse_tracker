@@ -79,7 +79,7 @@ class _CustomNumberPickerState extends State<CustomNumberPicker> {
             widget.type.name,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 18,
+              fontSize: 20,
             ),
           ),
           const SizedBox(height: 10),
@@ -94,10 +94,10 @@ class _CustomNumberPickerState extends State<CustomNumberPicker> {
           NumberPicker(
             value: _value,
             minValue: 0,
-            maxValue: 250,
+            maxValue: 300,
             step: 1,
             itemHeight: 60,
-            itemWidth: 80,
+            itemWidth: MediaQuery.of(context).size.width * 0.23,
             axis: Axis.vertical,
             textStyle: const TextStyle(
               color: Colors.grey,

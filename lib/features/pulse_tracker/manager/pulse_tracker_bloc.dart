@@ -21,6 +21,7 @@ class PulseTrackerBloc extends Bloc<PulseTrackerEvent, PulseTrackerState> {
     on<SaveRecordEvent>((event, emit) {
       var record = event.record;
 
+      // set default values
       if (record.dateTime == null) {
         record = record.copyWith(dateTime: DateTime.now());
       }

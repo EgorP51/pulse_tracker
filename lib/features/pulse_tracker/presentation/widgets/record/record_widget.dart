@@ -1,15 +1,12 @@
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:circular_countdown_timer/countdown_text_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pulse_tracker/core/di/locator.dart';
 import 'package:pulse_tracker/core/ui/ui_constants.dart';
 import 'package:pulse_tracker/features/pulse_tracker/data/models/record_model.dart';
+import 'package:pulse_tracker/features/pulse_tracker/manager/pulse_tracker_bloc.dart';
 import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/record/custom_date_time_picker.dart';
 import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/record/custom_number_picker.dart';
 import 'package:pulse_tracker/features/pulse_tracker/presentation/widgets/record/timer_widget.dart';
-
-import '../../../manager/pulse_tracker_bloc.dart';
 
 class RecordWidget extends StatefulWidget {
   const RecordWidget({super.key});
@@ -76,7 +73,7 @@ class _RecordWidgetState extends State<RecordWidget> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 36),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -119,7 +116,7 @@ class _RecordWidgetState extends State<RecordWidget> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: CupertinoButton(
           borderRadius: BorderRadius.circular(UIConstants.radius),
           color: Theme.of(context).colorScheme.primary,

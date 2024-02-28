@@ -57,8 +57,12 @@ class _TimerWidgetState extends State<TimerWidget> {
               },
               onComplete: () async {
                 debugPrint('Countdown Ended');
-                await Future.delayed(const Duration(seconds: 1));
-                Navigator.pop(context);
+                await Future.delayed(
+                  const Duration(seconds: 1),
+                  () {
+                    Navigator.pop(context);
+                  },
+                );
               },
               onChange: (String timeStamp) {
                 debugPrint('Countdown Changed $timeStamp');
